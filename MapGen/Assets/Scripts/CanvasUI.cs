@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class CanvasUI : MonoBehaviour
 {
-
+    public float moveSpeed = 0.1f;
     public InputField seedText;
     public MapGenerator mapGenerator;
     public Text errorText;
@@ -22,12 +22,17 @@ public class CanvasUI : MonoBehaviour
         if(int.TryParse(seedText.text, out parsedResult)) {
             errorText.text = "";
             mapGenerator.seed = int.Parse(seedText.text);
-            mapGenerator.GenerateMap();
         } else {
             errorText.text = seedErrorText;
         }
+    }
 
+    void Update() {
+        Vector2 inputV2;
+        inputV2.x = Input.GetAxisRaw("Horizontal") * (-moveSpeed);
+        inputV2.y = Input.GetAxisRaw("Vertical") * (-moveSpeed);
 
-        
+        mapGenerator.offset += inputV2;
+        mapGenerator.GenerateMap();
     }
 }
