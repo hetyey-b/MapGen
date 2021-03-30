@@ -24,18 +24,25 @@ public class MapGenerator : MonoBehaviour
     public bool autoUpdate;
 
     public TerrainType[] regions;
+    Color[] colorMap;
+
+    public int CoordinateToColorMapIndex(int x, int y) {
+        return y * mapWidth + x;
+    }
+
 
     public void GenerateMap() {
         float[,] noiseMap = Noise.GenerateNoiseMap(seed,mapWidth,mapHeight,noiseScale,octaves,persistance,lacunarity,offset);
 
-        Color[] colorMap = new Color[mapWidth * mapHeight];
+        colorMap = new Color[mapWidth * mapHeight];
         for(int y = 0; y < mapHeight; y++) {
             for(int x = 0; x < mapWidth; x++) {
                 float currentHeight = noiseMap[x,y];
                 
                 for(int i = 0; i < regions.Length; i++) {
                     if(currentHeight <= regions[i].height) {
-                        colorMap[y * mapWidth + x] = regions[i].color;
+                        colorMap[CoordinateToColorMapIndex(x,y)] = regions[i].color;
+
                         break;
                     }
                 }

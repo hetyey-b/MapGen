@@ -41,6 +41,8 @@
      <Compile Include="Assets\Scripts\MapGenerator.cs" />
      <Compile Include="Assets\Scripts\Noise.cs" />
      <Compile Include="Assets\Scripts\TextureGenerator.cs" />
+     <Compile Include="Assets\Scripts\Town.cs" />
+     <Compile Include="Assets\Scripts\TownGenerator.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
