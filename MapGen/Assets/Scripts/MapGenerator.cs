@@ -24,12 +24,31 @@ public class MapGenerator : MonoBehaviour
     public bool autoUpdate;
 
     public TerrainType[] regions;
-    Color[] colorMap;
+    private Color[] colorMap;
+
+
+    public Color[] getColorMap() { return colorMap; }
+
+    public void setColor(Color color, int x, int y) {
+        if(x >= mapWidth || y >= mapHeight) {
+            return;
+        }
+
+        colorMap[CoordinateToColorMapIndex(x,y)] = color;
+    }
+    public void setColor(Color color, int colorMapIndex) {
+        colorMap[colorMapIndex] = color;
+    }
 
     public int CoordinateToColorMapIndex(int x, int y) {
         return y * mapWidth + x;
     }
 
+    public void DisplayColorMap() {
+        MapDisplay display = FindObjectOfType<MapDisplay>();
+        
+        display.DrawTexture(TextureGenerator.TextureFromColorMap(colorMap,mapWidth,mapHeight));
+    }
 
     public void GenerateMap() {
         float[,] noiseMap = Noise.GenerateNoiseMap(seed,mapWidth,mapHeight,noiseScale,octaves,persistance,lacunarity,offset);
@@ -48,15 +67,13 @@ public class MapGenerator : MonoBehaviour
                 }
             }
         }
-
-        MapDisplay display = FindObjectOfType<MapDisplay>();
-
+        
         if(drawMode == DrawMode.NoiseMap) {
+            MapDisplay display = FindObjectOfType<MapDisplay>();
             display.DrawTexture(TextureGenerator.TextureFromHeightMap(noiseMap));
-        } else if(drawMode == DrawMode.ColorMap) {
-            display.DrawTexture(TextureGenerator.TextureFromColorMap(colorMap,mapWidth,mapHeight));
+        } else {
+            DisplayColorMap();
         }
-
     }
 
     void OnValidate() {
