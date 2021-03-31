@@ -40,6 +40,7 @@
      <Compile Include="Assets\Scripts\MapDisplay.cs" />
      <Compile Include="Assets\Scripts\MapGenerator.cs" />
      <Compile Include="Assets\Scripts\Noise.cs" />
+     <Compile Include="Assets\Scripts\RiverGenerator.cs" />
      <Compile Include="Assets\Scripts\TextureGenerator.cs" />
      <Compile Include="Assets\Scripts\Town.cs" />
      <Compile Include="Assets\Scripts\TownGenerator.cs" />
