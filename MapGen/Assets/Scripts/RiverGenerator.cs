@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,15 +12,15 @@ public class RiverGenerator : MonoBehaviour
 
     public int maxHeightRegionIndex;
 
-    bool hasNeighbour(int x, int y, int neighbourRegionIndex, Color[] colorMap) {
+/*    bool hasNeighbour(int x, int y, int neighbourRegionIndex, Color[] colorMap) {
         /*
         -1,-1   0,-1    1,-1    
         -1,0    0,0     1,0
         -1,1    0,1     1,1
         */
         
-        return ()
-    }
+        return (colorMap[mapGenerator.])
+    }*/
 
     public void GenerateRivers() {
         //Find random shore region next to water region, make it the first element
